@@ -4,8 +4,10 @@ import { FieldConfig } from '../config/fieldConfig';
 
 const { Option } = Select;
 
-interface FormProps {
+interface ElementFormProps {
   config: FieldConfig[];
   onSubmit: (data: Record<string, any>) => void;
 }
+
+
 
