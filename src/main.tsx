@@ -1,10 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { createRoot } from 'react-dom/client';
+import { ConfigProvider } from 'antd';
+import App from './App';
+import { translations } from './config/translations';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const locale = 'en';
+
+// Mount the app using createRoot()
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+root.render(
+  <ConfigProvider locale={translations[locale] as Locale}>
     <App />
-  </React.StrictMode>,
-)
+  </ConfigProvider>
+);
