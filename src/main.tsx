@@ -5,9 +5,8 @@ import { translations } from './config/translations';
 
 const locale = 'en';
 
-// Mount the app using createRoot()
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const HTMLElement = document.getElementById('root');
+const root = createRoot(HTMLElement);
 root.render(
   <ConfigProvider locale={translations[locale] as Locale}>
     <App />
