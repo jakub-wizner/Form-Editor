@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Select, Checkbox, Button } from 'antd';
 import { FieldConfig } from '../config/fieldConfig';
 import './ElementForm.css';
@@ -12,24 +12,19 @@ interface ElementFormProps {
 
 const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
   const [form] = Form.useForm();
-  const [submitting, setSubmitting] = useState(false);
-  const [available, setAvailable] = useState(false);
-
-  const handleCheckboxChange = (e) => {
-    setAvailable(e.target.checked);
-  }
 
   const handleSubmit = async () => {
     try {
-      setSubmitting(true);
       const values = await form.validateFields();
-      onSubmit({ ...values, 'product.available': available });
+  
+      if (values.category) {
+        delete values['product.available'];
+      }
+  
+      onSubmit(values);
       form.resetFields();
-      setAvailable(false);
     } catch (error) {
       console.error('Form validation error:', error);
-    } finally {
-      setSubmitting(false);
     }
   };
 
@@ -48,11 +43,15 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
               ))}
             </Select>
           )}
-          {field.type === 'boolean' && <Checkbox name="product.available" checked={available} onChange={handleCheckboxChange} />}
+          {field.type === 'boolean' && (
+            <Checkbox.Group>
+              <Checkbox value={field.translationKey} />
+            </Checkbox.Group>
+          )}
         </Form.Item>
       ))}
       <Form.Item>
-        <Button type="primary" onClick={handleSubmit} loading={submitting}>
+        <Button type="primary" onClick={handleSubmit}>
           Save
         </Button>
       </Form.Item>
@@ -61,4 +60,3 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
 };
 
 export default ElementForm;
-
