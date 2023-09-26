@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Select, Checkbox, Button } from 'antd';
 import { FieldConfig } from '../config/fieldConfig';
+import './ElementForm.css';
 
 const { Option } = Select;
 
