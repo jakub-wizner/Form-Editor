@@ -5,7 +5,7 @@ export const configElements: Record<string, FieldConfig[]> = {
       { type: 'string', label: 'Name', translationKey: 'product.name' },
       { type: 'choice', label: 'Size', translationKey: 'product.size', choices: ['small', 'middle', 'large'] },
       { type: 'number', label: 'Price', translationKey: 'product.price' },
-      { type: 'boolean', label: 'Available', translationKey: 'product.available'},
+      { type: 'bool', label: 'Available', translationKey: 'product.available'},
     ],
     Category: [
       { type: 'string', label: 'Name', translationKey: 'category.name' },
