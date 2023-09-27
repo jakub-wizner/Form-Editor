@@ -24,7 +24,7 @@ const App: React.FC = () => {
     handleMenuClick(event.key);
   }, []);
 
-  const handleFormSubmit = (data: Record<string, any>) => {
+  const handleFormSubmit = (data: Record<string, unknown>) => {
     console.log('Form data:', data);
   };
 

@@ -7,7 +7,7 @@ const { Option } = Select;
 
 interface ElementFormProps {
   config: FieldConfig[];
-  onSubmit: (data: Record<string, any>) => void;
+  onSubmit: (data: Record<string, unknown>) => void;
 }
 
 const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
