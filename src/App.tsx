@@ -14,6 +14,10 @@ const App: React.FC = () => {
     setCurrentElement(element);
   };
 
+  const handleMenuClickWrapper = React.useCallback((event: { key: string }) => {
+    handleMenuClick(event.key);
+  }, []);
+
   const handleFormSubmit = (data: Record<string, any>) => {
     console.log('Form data:', data);
   };
@@ -29,7 +33,7 @@ const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={200} theme="light">
-        <Menu mode="inline" theme="light" onClick={({ key }) => handleMenuClick(key)}>
+        <Menu mode="inline" theme="light" onClick={handleMenuClickWrapper}>
           {Object.keys(configElements).map((element) => (
             <Menu.Item key={element}>{element}</Menu.Item>
           ))}
