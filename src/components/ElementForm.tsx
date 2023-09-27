@@ -19,6 +19,8 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
   
       if (values.category) {
         delete values['product.available'];
+      } else if (values['product.available']) {
+        values['product.available'] = values['product.available'] === 'on';
       }
   
       onSubmit(values);
@@ -44,9 +46,9 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
             </Select>
           )}
           {field.type === 'bool' && (
-            <Checkbox.Group>
-              <Checkbox value={field.translationKey} />
-            </Checkbox.Group>
+            <Form.Item name={field.translationKey} valuePropName='checked' initialValue={false}>
+              <Checkbox />
+            </Form.Item>
           )}
         </Form.Item>
       ))}
