@@ -10,6 +10,12 @@ const { Content, Sider } = Layout;
 const App: React.FC = () => {
   const [currentElement, setCurrentElement] = React.useState<string | null>(null);
 
+  const menuItems = Object.keys(configElements).map(element => ({
+    label: element,
+    key: element,
+  }));
+
+
   const handleMenuClick = (element: string) => {
     setCurrentElement(element);
   };
@@ -33,11 +39,7 @@ const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={200} theme="light">
-        <Menu mode="inline" theme="light" onClick={handleMenuClickWrapper}>
-          {Object.keys(configElements).map((element) => (
-            <Menu.Item key={element}>{element}</Menu.Item>
-          ))}
-        </Menu>
+        <Menu mode="inline" theme="light" onClick={handleMenuClickWrapper} items={menuItems}/>
       </Sider>
       <Layout>
         <Content style={{ padding: '24px' }}>
