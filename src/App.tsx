@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu, Select } from 'antd';
 import { configElements } from './config/configElements';
 import { FieldConfig } from './config/fieldConfig';
 import ElementForm from './components/ElementForm';
-import { LanguageContext, useLanguage } from './components/LanguageContext';
+import { useLanguage } from './components/LanguageContext';
 import { translations } from './config/translations';
 
 const { Content, Sider, Header } = Layout;
