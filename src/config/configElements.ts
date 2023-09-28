@@ -2,10 +2,10 @@ import { FieldConfig } from "./fieldConfig";
 
 export const configElements: Record<string, FieldConfig[]> = {
   Product: [
-    { type: 'string', label: 'Name', translationKey: 'product.name' },
+    { type: 'string', label: 'productName', translationKey: 'product.name' },
     {
       type: 'choice',
-      label: 'Size',
+      label: 'productSize',
       translationKey: 'product.size',
       choices: [
         { translationKey: 'product.size.small', value: 'small' },
@@ -13,11 +13,11 @@ export const configElements: Record<string, FieldConfig[]> = {
         { translationKey: 'product.size.large', value: 'large' }
       ]
     },
-    { type: 'number', label: 'Price', translationKey: 'product.price' },
-    { type: 'bool', label: 'Available', translationKey: 'product.available'},
+    { type: 'number', label: 'productPrice', translationKey: 'product.price' },
+    { type: 'bool', label: 'productAvailable', translationKey: 'product.available'},
   ],
   Category: [
-    { type: 'string', label: 'Name', translationKey: 'category.name' },
-    { type: 'number', label: 'Order', translationKey: 'category.order' },
+    { type: 'string', label: 'categoryName', translationKey: 'category.name' },
+    { type: 'number', label: 'categoryOrder', translationKey: 'category.order' },
   ],
 };

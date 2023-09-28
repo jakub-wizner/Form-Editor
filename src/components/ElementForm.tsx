@@ -54,7 +54,7 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
             </Select>
           )}
           {field.type === 'bool' && (
-            <Form.Item name={field.translationKey} valuePropName='checked' initialValue={false}>
+            <Form.Item name={field.label} valuePropName='checked' initialValue={false}>
               <Checkbox />
             </Form.Item>
           )}
