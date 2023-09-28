@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Select, Checkbox, Button } from 'antd';
 import { FieldConfig } from '../config/fieldConfig';
 import './ElementForm.css';
@@ -12,9 +12,11 @@ interface ElementFormProps {
 
 const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
   const [form] = Form.useForm();
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
     try {
+      setSubmitting(true);
       const values = await form.validateFields();
   
       if (values.category) {
@@ -27,6 +29,8 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
       form.resetFields();
     } catch (error) {
       console.error('Form validation error:', error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -53,7 +57,7 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
         </Form.Item>
       ))}
       <Form.Item>
-        <Button type="primary" onClick={handleSubmit}>
+        <Button type="primary" onClick={handleSubmit} loading={submitting}>
           Save
         </Button>
       </Form.Item>
