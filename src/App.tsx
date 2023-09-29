@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu, Select } from 'antd';
 import { configElements } from './config/configElements';
 import { FieldConfig } from './config/fieldConfig';
 import ElementForm from './components/ElementForm';
+import { useLanguage } from './components/LanguageContext';
+import { translations } from './config/translations';
 
 const { Content, Sider, Header } = Layout;
 const { Option } = Select;
 
 const App: React.FC = () => {
-  const [currentElement, setCurrentElement] = React.useState<string | null>(null);
-
-  const menuItems = Object.keys(configElements).map(element => ({
-    label: element,
-    key: element,
-  }));
-
+  const [currentElement, setCurrentElement] = useState<string | null>(null);
+  const { currentLanguage, changeLanguage } = useLanguage();
 
   const handleMenuClick = (element: string) => {
     setCurrentElement(element);
@@ -22,15 +19,26 @@ const App: React.FC = () => {
 
   const handleMenuClickWrapper = React.useCallback((event: { key: string }) => {
     handleMenuClick(event.key);
-  }, []);
+  }, []);  
 
   const handleFormSubmit = (data: Record<string, unknown>) => {
     console.log('Form data:', data);
   };
 
   const handleLanguageChange = (value: string) => {
-    console.log('Selected language:', value);
+    changeLanguage(value);
   };
+
+  const menuItems = [
+    {
+      label: translations[currentLanguage]['menu.product'],
+      key: 'Product',
+    },
+    {
+      label: translations[currentLanguage]['menu.category'],
+      key: 'Category',
+    },
+  ];
 
   const renderForm = () => {
     if (currentElement) {
@@ -44,7 +52,7 @@ const App: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={200} theme="light">
         <Header style={{ display: 'inline-block', justifyItems: 'center', margin: 0, backgroundColor: 'white', paddingLeft: 0 }}>
-          <Select defaultValue="en" style={{ width: 120 }} onChange={handleLanguageChange}>
+          <Select value={currentLanguage} style={{ width: 120 }} onChange={handleLanguageChange}>
             <Option value="en">English</Option>
             <Option value="es">Español</Option>
           </Select>
