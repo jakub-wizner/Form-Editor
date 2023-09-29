@@ -13,18 +13,13 @@ const App: React.FC = () => {
   const [currentElement, setCurrentElement] = useState<string | null>(null);
   const { currentLanguage, changeLanguage } = useLanguage();
 
-  const menuItems = Object.keys(configElements).map(element => ({
-    label: translations[currentLanguage][element],
-    key: element,
-  }));
-
   const handleMenuClick = (element: string) => {
     setCurrentElement(element);
   };
 
   const handleMenuClickWrapper = React.useCallback((event: { key: string }) => {
     handleMenuClick(event.key);
-  }, []);
+  }, []);  
 
   const handleFormSubmit = (data: Record<string, unknown>) => {
     console.log('Form data:', data);
@@ -33,6 +28,21 @@ const App: React.FC = () => {
   const handleLanguageChange = (value: string) => {
     changeLanguage(value);
   };
+
+  const menuItems = [
+    {
+      label: translations[currentLanguage]['menu.product'],
+      key: 'Product',
+    },
+    {
+      label: translations[currentLanguage]['menu.category'],
+      key: 'Category',
+    },
+    {
+      label: translations[currentLanguage]['button.switchLanguage'],
+      key: 'switchLanguage',
+    },
+  ];
 
   const renderForm = () => {
     if (currentElement) {
@@ -51,7 +61,7 @@ const App: React.FC = () => {
             <Option value="es">Español</Option>
           </Select>
         </Header>
-        <Menu mode="inline" theme="light" onClick={handleMenuClickWrapper} items={menuItems}/>
+        <Menu mode="inline" theme="light" onClick={handleMenuClickWrapper} items={menuItems} />
       </Sider>
       <Layout>
         <Content style={{ padding: '24px' }}>

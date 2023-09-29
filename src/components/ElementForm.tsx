@@ -41,7 +41,7 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
   return (
     <Form form={form} layout="vertical">
       {config.map((field) => (
-        <Form.Item key={field.translationKey} label={translations[currentLanguage][field.translationKey]} name={field.label}>
+        <Form.Item key={field.translationKey} label={translations[currentLanguage][field.translationKey]} name={field.translationKey}>
           {field.type === 'string' && <Input />}
           {field.type === 'number' && <Input type="number" />}
           {field.type === 'choice' && (
@@ -54,7 +54,7 @@ const ElementForm: React.FC<ElementFormProps> = ({ config, onSubmit }) => {
             </Select>
           )}
           {field.type === 'bool' && (
-            <Form.Item name={field.label} valuePropName='checked' initialValue={false}>
+            <Form.Item name={field.translationKey} valuePropName='checked' initialValue={false}>
               <Checkbox />
             </Form.Item>
           )}
