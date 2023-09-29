@@ -38,10 +38,6 @@ const App: React.FC = () => {
       label: translations[currentLanguage]['menu.category'],
       key: 'Category',
     },
-    {
-      label: translations[currentLanguage]['button.switchLanguage'],
-      key: 'switchLanguage',
-    },
   ];
 
   const renderForm = () => {
